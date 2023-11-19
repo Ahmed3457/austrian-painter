@@ -1,7 +1,9 @@
 import nextcord
 from nextcord.ext import commands
 
-
+token_file = open("token.txt", "r")
+token = token_file.read()
+token_file.close()
 bot = commands.Bot()
 
 @bot.event
@@ -14,4 +16,4 @@ async def send(interaction: nextcord.Interaction, ide: int = nextcord.SlashOptio
     mr = bot.get_user(ide)
     mr.send(message)
 
-bot.run("hellow")
+bot.run(token)
