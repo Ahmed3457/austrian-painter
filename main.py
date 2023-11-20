@@ -23,7 +23,7 @@ async def scramble(interaction: nextcord.Interaction, length: int = nextcord.Sla
         cube = "333"
     scramble = gen_scramble(length=length, cube=cube)
     embed = nextcord.Embed(title=f"{scramble[1]} Scramble", description=f"Here's your scramble:\n`{scramble[0]}`")
-    embed.set_footer(text=f"<@{user.id}>", icon_url=user.avatar.url)
+    embed.set_footer(text=f"{user.name}", icon_url=user.avatar.url)
     await interaction.followup.send(embed=embed)
     
 bot.run(token)
