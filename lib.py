@@ -1,5 +1,10 @@
 from random import shuffle, choice
 cubes = {
+        "111": [[
+            "x", "x'", "x2",
+            "y", "y'", "y2",
+            "z", "z'", "z2"    
+        ], "1x1"],
         "222": [[
             "R", "R'", "R2",
             "L", "L'", "L2",
