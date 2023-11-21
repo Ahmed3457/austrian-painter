@@ -47,8 +47,11 @@ async def scramble(
     embed = nextcord.Embed()
     embed.set_footer( text = f"{user.name}", icon_url = user.avatar.url )
 
-    if length == None or length > 50 or length < 1:
+    if length == None or length < 1:
         length = 20
+
+    if length > 50:
+        length = 50
 
     if cube == None:
         cube = "333"
