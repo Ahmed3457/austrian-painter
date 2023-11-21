@@ -45,10 +45,7 @@ async def scramble(
     h = 0
 
     embed = nextcord.Embed()
-    embed.set_footer(
-        text = f"{user.name}", 
-        icon_url = user.avatar.url
-        )
+    embed.set_footer( text = f"{user.name}", icon_url = user.avatar.url )
 
     if length == None or length > 50 or length < 1:
         length = 20
@@ -70,10 +67,7 @@ async def scramble(
     
     for i in range(count):
         h += 1
-        scramble = gen_scramble(
-            length=length, 
-            cube=cube
-            )
+        scramble = gen_scramble(length=length, cube=cube)
         if count > 1:
             embed.add_field(name=f"{h}", value=scramble[0])
         else:
