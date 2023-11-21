@@ -32,26 +32,52 @@ async def scramble(
         description = "The cube you want to scramble.", 
         required = False, 
         choices = cubes.keys()
+    ),
+    count: int = nextcord.SlashOption(
+        description = "The amount of scrambles you want, 25 at maximum.",
+        required = False
     )
 ):
-    user = interaction.user
     await interaction.response.defer()
-    if length == None or length > 50 or length < 1:
-        length = 20
-    if cube == None:
-        cube = "333"
-    scramble = gen_scramble(
-        length=length, 
-        cube=cube
-        )
-    embed = nextcord.Embed(
-        title = f"{scramble[1]} Scramble", 
-        description = f"Here's your scramble:\n`{scramble[0]}`"
-        )
+
+    user = interaction.user
+    scramble = None
+    h = 0
+
+    embed = nextcord.Embed()
     embed.set_footer(
         text = f"{user.name}", 
         icon_url = user.avatar.url
         )
-    await interaction.followup.send( embed = embed )
+
+    if length == None or length > 50 or length < 1:
+        length = 20
+
+    if cube == None:
+        cube = "333"
+
+    if count == None or count < 1:
+        count = 1
+
+    if count > 25:
+        count = 25
+
+    if count > 1:
+        embed.title = "Here are your scrambles:"
+
+    else:
+        embed.title = "Here is your scramble:"
     
+    for i in range(count):
+        h += 1
+        scramble = gen_scramble(
+            length=length, 
+            cube=cube
+            )
+        if count > 1:
+            embed.add_field(name=f"{h}", value=scramble[0])
+        else:
+            embed.description = scramble[0]
+
+    await interaction.followup.send( embed = embed )
 bot.run(token)
