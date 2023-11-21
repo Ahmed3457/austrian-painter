@@ -13,8 +13,24 @@ test_servers = [937639594030153758]
 async def on_ready():
     print(f"We have logged in as {bot.user}")
 
-@bot.slash_command(description = "Generate a scramble for the chosen cube.", force_global = True, dm_permission = True, guild_ids=test_servers)
-async def scramble(interaction: nextcord.Interaction, length: int = nextcord.SlashOption(description = "The length of the scramble, 50 at maximum.", required = False), cube: str = nextcord.SlashOption(description = "The cube you want to scramble.", required = False, choices = cubes.keys())):
+@bot.slash_command(
+    description = "Generate a scramble for the chosen cube.", 
+    force_global = True, 
+    dm_permission = True, 
+    guild_ids=test_servers
+)
+async def scramble(
+    interaction: nextcord.Interaction, 
+    length: int = nextcord.SlashOption(
+        description = "The length of the scramble, 50 at maximum.", 
+        required = False
+    ), 
+    cube: str = nextcord.SlashOption(
+        description = "The cube you want to scramble.", 
+        required = False, 
+        choices = cubes.keys()
+    )
+):
     user = interaction.user
     await interaction.response.defer()
     if length == None or length > 50 or length < 1:
