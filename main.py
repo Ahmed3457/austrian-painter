@@ -2,7 +2,10 @@ import nextcord
 from nextcord.ext import commands
 from lib import gen_scramble, cubes
 
-token_file = open("token.txt", "r")
+token_file = open(
+    "token.txt", 
+    "r"
+    )
 token = token_file.read()
 token_file.close()
 
@@ -37,9 +40,18 @@ async def scramble(
         length = 20
     if cube == None:
         cube = "333"
-    scramble = gen_scramble(length=length, cube=cube)
-    embed = nextcord.Embed(title=f"{scramble[1]} Scramble", description=f"Here's your scramble:\n`{scramble[0]}`")
-    embed.set_footer(text=f"{user.name}", icon_url=user.avatar.url)
-    await interaction.followup.send(embed=embed)
+    scramble = gen_scramble(
+        length=length, 
+        cube=cube
+        )
+    embed = nextcord.Embed(
+        title = f"{scramble[1]} Scramble", 
+        description = f"Here's your scramble:\n`{scramble[0]}`"
+        )
+    embed.set_footer(
+        text = f"{user.name}", 
+        icon_url = user.avatar.url
+        )
+    await interaction.followup.send( embed = embed )
     
 bot.run(token)
