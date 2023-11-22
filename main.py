@@ -1,6 +1,6 @@
 import nextcord
 from nextcord.ext import commands
-from lib import gen_scramble, cubes
+from lib import gen_scramble, get_all_cubes, cubes
 
 token_file = open(
     "token.txt", 
@@ -31,7 +31,7 @@ async def scramble(
     cube: str = nextcord.SlashOption(
         description = "The cube you want to scramble.", 
         required = False, 
-        choices = cubes.keys()
+        choices = get_all_cubes()
     ),
     count: int = nextcord.SlashOption(
         description = "The amount of scrambles you want, 25 at maximum.",
