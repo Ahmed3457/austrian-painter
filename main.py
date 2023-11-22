@@ -63,10 +63,10 @@ async def scramble(
         count = 25
 
     if count > 1:
-        embed.title = "Here are your scrambles:"
+        embed.title = f"Here are your {cube} scrambles:"
 
     else:
-        embed.title = "Here is your scramble:"
+        embed.title = f"Here is your {cube} scramble:"
     
     for i in range(count):
         h += 1
